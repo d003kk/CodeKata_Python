@@ -5,12 +5,13 @@ class TestSingleLinkedList(unittest.TestCase):
 
     list = SingleLinkedList()
 
-    def test_emptylist(self):
-        self.assertEqual(self.list.find("fred"), "")
+    def test_EmptyList(self):
+        self.assertEqual(self.list.find("fred"), None)
 
     def test_elementadd(self):
         self.list.add("fred")
         self.assertEqual("fred", self.list.find("fred").value())
+
 
     def test_nonmember(self):
         self.assertEqual(self.list.find("wilma"), "")
