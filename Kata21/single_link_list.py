@@ -8,55 +8,52 @@ class link:
 class SingleLinkedList:
     """ A singley linked list containing strings """
     def __init__(self):
-        self.root = link(None, "")
+        self.root = None
         pass
         
     def find(self, val):
         lnk = self.root
         while True:
+            if lnk == None:
+                return None
             if lnk.val == val: 
                 return lnk
-            if lnk.next == None:
-                return None;
             lnk = lnk.next
         
     def add(self, val):
         lnk = self.root
         while True:
-            if lnk.val == "": 
-                lnk.val = val
-                return
+            if lnk == None: 
+                self.root = link(None, val)
+                return self.root
             elif lnk.next == None:
                 lnk.next = link(None, val)
-                return None;
+                return None
             lnk = lnk.next
 
     def values(self):
         lnk = self.root
         res =[]
-        while True:
+        while lnk != None:
             res.append(lnk.val)
-            if lnk.next == None:
-                return res;
             lnk = lnk.next
+        return res
 
         
-    def delete(self, val):
-        if self.root.val == val:
+    def delete(self, delete_me):
+        if self.root == delete_me:
             if self.root.next == None:
-                self.root.val = ""
+                self.root = None
             else:
                 self.root = self.root.next
             return
         prev = self.root
         lnk = self.root.next
-        if lnk == None:
-            return
         while True:
-            if lnk.val == val: 
-                prev.next = lnk.next
+            if lnk == None:
                 return
-            elif lnk.next == None:
+            if lnk == delete_me: 
+                prev.next = lnk.next
                 return
             prev = lnk
             lnk = lnk.next
